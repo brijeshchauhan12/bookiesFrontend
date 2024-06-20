@@ -1,18 +1,22 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './css/dashboard.css';
+
 import axios from 'axios';
-const HomePage = ({ setAuth ,token,setData}) => {
+
+const DashboardComponent = ({token,setData}) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    setAuth(false);
+    // Remove the token from localStorage and navigate to the login page
+//    localStorage.removeItem('accessToken');
     navigate('/login');
   };
 
+
+
   const handleProfileDetails=async  (e)=>{
 
-
-    
 
     e.preventDefault();
    
@@ -45,13 +49,13 @@ const HomePage = ({ setAuth ,token,setData}) => {
   
 
   return (
-    <div>
-      <h2>Home</h2>
-      <p>Welcome to the Home Page!</p>
-      <button onClick={handleLogout}>Logout</button>
+    <div className="dashboard-container">
+      <h2>Dashboard</h2>
+      <p>Welcome to the dashboard! You are successfully logged in.</p>
       <button onClick={handleProfileDetails}>See your profile details</button>
+      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 };
 
-export default HomePage
+export default DashboardComponent;

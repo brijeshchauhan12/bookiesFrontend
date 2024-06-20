@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import './css/Login.css'
 
 const LoginPage = ({ setAuth ,setToken}) => {
   const [email, setEmail] = useState('');
@@ -21,7 +21,7 @@ const LoginPage = ({ setAuth ,setToken}) => {
         
     
         setToken(response.data.token);
-        navigate('/home');
+        navigate('/dashboard');
       } else {
         alert('Invalid credentials');
       }
@@ -34,7 +34,7 @@ const LoginPage = ({ setAuth ,setToken}) => {
 
 
   return (
-    <div>
+    <div  className="login-container">
       <h2>Login</h2>
       <form onSubmit={handleAxios}>
         <div>
