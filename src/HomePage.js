@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-const HomePage = ({ setAuth ,token}) => {
+const HomePage = ({ setAuth ,token,setData}) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -30,6 +30,10 @@ const HomePage = ({ setAuth ,token}) => {
       if (response.data) {
 
          console.log(response.data);
+         console.log(response.data.id);
+         console.log(response.data.fullName)
+         setData(response.data);
+         navigate('/details');
       } else {
         alert('Invalid credentials');
       }
