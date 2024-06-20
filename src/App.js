@@ -7,12 +7,13 @@ import HomePage from './HomePage';
 
 function App() {
   const [isAuthenticated, setAuth] = useState(false);
+  const [token, setToken]=useState('');
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LoginPage setAuth={setAuth} />} />
-        <Route path="/home" element={isAuthenticated ? <HomePage setAuth={setAuth} /> : <Navigate to="/" />} />
+        <Route path="/" element={<LoginPage setAuth={setAuth} setToken={setToken}/>} />
+        <Route path="/home" element={isAuthenticated ? <HomePage setAuth={setAuth} token={token} /> : <Navigate to="/" />} />
       </Routes>
     </Router>
   );

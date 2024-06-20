@@ -3,21 +3,24 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
-const LoginPage = ({ setAuth }) => {
-  const [username, setUsername] = useState('');
+const LoginPage = ({ setAuth ,setToken}) => {
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleAxios = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:7777/loginUser', {
-        username,
+      const response = await axios.post('http://localhost:7777/auth/login', {
+        email,
         password,
       });
       console.log(response);
       if (response.data) {
         setAuth(true);
+        
+    
+        setToken(response.data.token);
         navigate('/home');
       } else {
         alert('Invalid credentials');
@@ -27,31 +30,7 @@ const LoginPage = ({ setAuth }) => {
       alert('Error logging in');
     }
   };
-const handleSubmit = async (event) => {
-    event.preventDefault();
 
-    const response = await fetch("http://localhost:7777/loginUser", {
-        
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username,
-        password,
-      }),
-    });
-
-    if (response.ok) {
-      console.log("Great worked");
-      console.log(response);
-      setAuth(true);
-      navigate('/home');
-    } else {
-      setAuth(false);
-        console.log("Greate not e worked");
-    }
-  };
 
 
   return (
@@ -59,8 +38,8 @@ const handleSubmit = async (event) => {
       <h2>Login</h2>
       <form onSubmit={handleAxios}>
         <div>
-          <label>Username: </label>
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <label>Email: </label>
+          <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div>
           <label>Password: </label>
