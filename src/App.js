@@ -7,8 +7,9 @@ import HomePage from './HomePage';
 import DetailPage from './DetailPage';
 import Signup from './Signup.js';
 import AuthChoiceComponent from './LandingPage.js';
-import ProtectedRoute from './ProtectedRoute.js';
-import DashboardComponent from './Dashboard.js';
+import NewBookAddForm from './NewBookAddForm.js';
+import SingleBookByUserDetails from './SingleBookByUserDetails.js';
+
 function App() {
   const [isAuthenticated, setAuth] = useState(false);
   const [token, setToken]=useState('');
@@ -19,17 +20,12 @@ function App() {
       <Routes>
       <Route path="/" element={<AuthChoiceComponent />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<LoginPage setAuth={setAuth} setToken={setToken}/>} />
-        <Route
-        path="/dashboard"
-        element={
-          <ProtectedRoute>
-            <DashboardComponent token={token} setData={setData}/>
-          </ProtectedRoute>
-        }
-      />
-        <Route path="/home" element={isAuthenticated ? <HomePage setAuth={setAuth} token={token} setData={setData}/> : <Navigate to="/" />} />
+        <Route path="/login" element={<LoginPage />} />
+
+        <Route path="/home" element={<HomePage/>} />
         <Route path="/details" element={<DetailPage data={data}/>} />
+        <Route path="/addbook" element={<NewBookAddForm />} />
+        <Route path="/Singlebookbyuser" element={<SingleBookByUserDetails />} />
       </Routes>
     </Router>
   );

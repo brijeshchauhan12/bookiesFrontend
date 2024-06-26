@@ -1,0 +1,91 @@
+/* Base styles */
+.user-info {
+    margin-bottom: 20px;
+    text-align: center; /* Center align user info */
+  }
+  
+  .user-info h1,
+  .user-info h6 {
+    margin: 5px 0;
+  }
+  
+  .books-list {
+    margin-top: 20px;
+  }
+  
+  .book-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column; /* Stack book details vertically */
+    align-items: center; /* Center align book details */
+  }
+  
+  .book-item li {
+    list-style-type: none;
+    margin: 5px 0;
+  }
+  
+  .fetch-books-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block; /* Make the button block level */
+    margin: 0 auto; /* Center align the button */
+  }
+  
+  .fetch-books-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Responsive design adjustments */
+  @media (min-width: 768px) {
+    .book-item {
+      flex-direction: row; /* Display book details in a row for larger screens */
+      justify-content: space-between; /* Distribute space between book details */
+    }
+  
+    .books-list ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center; /* Center align the book items */
+    }
+  
+    .book-item {
+      width: 45%; /* Adjust book item width for larger screens */
+      margin: 10px; /* Increase margin for spacing */
+    }
+
+  }
+
+   .spinner {
+       border: 4px solid rgba(0, 0, 0, 0.1);
+       width: 36px;
+   height: 36px;
+      border-radius: 50%;
+   border-left-color: #09f;
+   animation: spin 1s ease infinite;
+     }
+    @keyframes spin{
+        0%{
+            transform: rotate(0deg);
+        }
+        100%{
+            transform: rotate(360deg);
+        }
+     }
+
+     .book-item {
+        cursor: pointer;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      }
+      
+      .book-item:hover {
+        background-color: #f0f0f0; /* Light grey background on hover */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Slight shadow for depth */
+      }

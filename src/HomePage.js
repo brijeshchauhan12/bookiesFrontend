@@ -1,39 +1,47 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-const HomePage = ({ setAuth ,token,setData}) => {
-  const navigate = useNavigate();
 
+import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
+const HomePage = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const userToken = location.state?.userToken; // Accessing the userToken passed from LoginPage
+
+  console.log(userToken+"userToken");
   const handleLogout = () => {
-    setAuth(false);
-    navigate('/login');
+
+    navigate('/');
   };
 
   const handleProfileDetails=async  (e)=>{
 
 
-    
-
     e.preventDefault();
-   
 
     try {
       const response = await axios.get('http://localhost:7777/users/me',
       {
         headers:{
           'Content-Type': 'text/plain',
-          'Authorization': 'Bearer '+token,
+          'Authorization': 'Bearer '+userToken,
       
         }
       });
-      console.log(response);
+      console.log(response+"response");
       if (response.data) {
 
          console.log(response.data);
          console.log(response.data.id);
          console.log(response.data.fullName)
-         setData(response.data);
-         navigate('/details');
+ 
+
+         const userData={
+          userid: response.data.id,
+          fullName: response.data.fullName,
+          email: response.data.email,
+          token: userToken
+         }
+         navigate('/details', {state:userData});
       } else {
         alert('Invalid credentials');
       }

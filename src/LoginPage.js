@@ -16,12 +16,13 @@ const LoginPage = ({ setAuth ,setToken}) => {
         password,
       });
       console.log(response);
-      if (response.data) {
-        setAuth(true);
-        
-    
-        setToken(response.data.token);
-        navigate('/dashboard');
+      if (response.status === 200) {
+   
+
+        const userToken={
+         userToken: response.data.token
+        }
+        navigate('/home',{state:userToken});
       } else {
         alert('Invalid credentials');
       }

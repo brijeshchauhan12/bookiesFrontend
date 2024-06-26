@@ -10,7 +10,7 @@ const DashboardComponent = ({token,setData}) => {
   const handleLogout = () => {
     // Remove the token from localStorage and navigate to the login page
 //    localStorage.removeItem('accessToken');
-    navigate('/login');
+    navigate('/');
   };
 
 
@@ -32,10 +32,6 @@ const DashboardComponent = ({token,setData}) => {
       });
       console.log(response);
       if (response.data) {
-
-         console.log(response.data);
-         console.log(response.data.id);
-         console.log(response.data.fullName)
          setData(response.data);
          navigate('/details');
       } else {
