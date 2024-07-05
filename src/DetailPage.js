@@ -56,7 +56,9 @@ const DetailPage = () => {
          const data={
             title: response.data.title,  
             author: response.data.author,
-            grade: response.data.grade
+            grade: response.data.grade,
+            bookId:bookId,
+            token:token
          }
         navigate('/Singlebookbyuser', 
               { state: data}
