@@ -87,6 +87,38 @@ const HomePage = () => {
     }, 200); // Delay in milliseconds
   };
 
+  const handleBooksByIdUser = async (e, bookId) => {
+    e.preventDefault();
+    setLoading(true); // Start loading
+    setTimeout(async () => { // Add a delay before fetching data
+      try {
+        const response = await axios.get(`http://127.0.0.1:7777/api/pub/user/${bookId}`, {
+          headers: {
+            'Content-Type': 'text/plain',
+            'Authorization': 'Bearer ' + userToken,
+          }
+        });
+        if (response.data) {
+          console.log(response.data);
+          const data={
+             title: response.data.title,  
+             author: response.data.author,
+             grade: response.data.grade,
+          }
+         navigate('/Singlebookbyuser', 
+               { state: data}
+               )
+        } else {
+          alert('Invalid credentials');
+        }
+      } catch (error) {
+        console.error('Error fetching books', error);
+        alert('Error fetching books');
+      } finally {
+        setLoading(false); // Stop loading regardless of the outcome
+      }
+    }, 200); // Delay in milliseconds
+  };
   return (
     <div>
       <h2>Home</h2>
@@ -102,7 +134,7 @@ const HomePage = () => {
           <ul>
             {books.map((book) => (
              
-              <div key={book.id} className="book-item" onClick={()=>console.log("pressed")}>
+              <div key={book.id} className="book-item" onClick={(e)=>handleBooksByIdUser(e,book.id)}>
                 <li>{book.title}</li>
                 <li>{book.author}</li>
                 <li>{book.grade}</li>
