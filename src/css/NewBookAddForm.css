@@ -1,0 +1,70 @@
+
+.form-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    max-height: 90vh; /* Adjust based on your needs */
+    overflow-y: auto; /* Enables vertical scrolling */
+    padding: 20px; /* Optional: Adds some spacing inside the container */
+    width: 80%; /* Adjust the width as needed */
+    max-width: 1200px; /* Optional: Ensures the form doesn't get too wide on large screens */
+    margin: auto; /* Centers the form on the page */
+    /* Other styles */
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  input[type="text"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+  }
+  
+  button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  @media (max-width: 768px) {
+    .form-container {
+      padding: 10px;
+    }
+  }
+  .form-group label, .form-group input, .form-group textarea {
+    width: 100%; /* Makes labels and inputs fill their parent container */
+    display: block; /* Ensures labels and inputs are block-level elements */
+    box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+  }
+  .form-control {
+    width: 100%; /* Ensures form controls fill their parent container */
+    box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+  }
+  

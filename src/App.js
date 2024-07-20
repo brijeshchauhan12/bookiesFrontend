@@ -9,6 +9,8 @@ import Signup from './Signup.js';
 import AuthChoiceComponent from './LandingPage.js';
 import NewBookAddForm from './NewBookAddForm.js';
 import SingleBookByUserDetails from './SingleBookByUserDetails.js';
+import EmailLinkPage from './SendEmail.js';
+import BookDetail from './Model/BookDetail.js';
 
 function App() {
   const [isAuthenticated, setAuth] = useState(false);
@@ -26,6 +28,8 @@ function App() {
         <Route path="/details" element={<DetailPage data={data}/>} />
         <Route path="/addbook" element={<NewBookAddForm />} />
         <Route path="/Singlebookbyuser" element={<SingleBookByUserDetails />} />
+        <Route path="/email" element={<EmailLinkPage />} />
+        <Route path="/bookdetail" element={<BookDetail />} />
       </Routes>
     </Router>
   );

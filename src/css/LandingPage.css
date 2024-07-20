@@ -1,46 +1,95 @@
-body {
-    background: #f0f2f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-  }
-  
+:root {
+  /* Color Scheme */
+  --primary-color: #007bff;
+  --primary-dark: #0056b3;
+  --background-color: #f0f2f5;
+  --text-color: #333;
+  --container-bg-color: #fff;
+
+  /* Spacing */
+  --container-padding: 2rem;
+  --button-padding: 0.75rem;
+  --margin-bottom-large: 1rem;
+
+  /* Typography */
+  --font-family-base: Arial, sans-serif;
+  --heading-font-size: 24px;
+  --button-font-size: 16px;
+
+  /* Borders */
+  --border-radius-base: 10px;
+  --button-border-radius: 5px;
+
+  /* Box Shadows */
+  --box-shadow-base: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* body {
+  background: var(--background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: var(--font-family-base);
+} */
+
+ .auth-choice-container {
+  background: var(--container-bg-color);
+  padding: var(--container-padding);
+  border-radius: var(--border-radius-base);
+  box-shadow: var(--box-shadow-base);
+  text-align: center;
+  width: 100%;
+  /* max-width: 400px; */
+  transition: transform 0.3s ease-in-out;
+} 
+
+.auth-choice-container:hover {
+  transform: translateY(-5px);
+}
+
+.auth-choice-container h2 {
+  margin-bottom: var(--margin-bottom-large);
+  font-size: var(--heading-font-size);
+  color: var(--text-color);
+}
+
+.auth-choice-container button {
+  width: 100%;
+  padding: var(--button-padding);
+  background: var(--primary-color);
+  border: none;
+  border-radius: var(--button-border-radius);
+  color: #fff;
+  font-size: var(--button-font-size);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  margin-bottom: var(--margin-bottom-large);
+}
+
+.auth-choice-container button:hover {
+  background: var(--primary-dark);
+  transform: scale(1.05);
+}
+
+.auth-choice-container button:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .auth-choice-container {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 100%;
-    max-width: 400px;
+    max-width: 90%;
+    padding: 1rem;
   }
-  
+
   .auth-choice-container h2 {
-    margin-bottom: 1rem;
-    font-size: 24px;
-    color: #333;
+    font-size: 20px;
   }
-  
+
   .auth-choice-container button {
-    width: 100%;
-    padding: 0.75rem;
-    background: #007bff;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.3s;
-    margin-bottom: 1rem;
+    padding: 0.5rem;
+    font-size: 14px;
   }
-  
-  .auth-choice-container button:hover {
-    background: #0056b3;
-  }
-  
-  .auth-choice-container button:last-child {
-    margin-bottom: 0;
-  }
+}

@@ -1,13 +1,4 @@
-body {
-    background: #f0f2f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-  }
-  
+ 
   .login-container {
     background: #fff;
     padding: 2rem;
@@ -58,4 +49,3 @@ body {
     color: red;
     margin-bottom: 1rem;
   }
-  
