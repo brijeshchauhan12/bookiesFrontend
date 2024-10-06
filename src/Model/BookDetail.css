@@ -43,3 +43,63 @@
     color: #28a745;
     font-size: 1.2em;
   }
+
+  /* Add this CSS to your project's CSS file */
+
+/* Form container styling */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background-color: #fff;
+}
+
+.form-container label {
+  margin-bottom: 5px;
+  color: #333;
+  font-weight: bold;
+}
+
+.form-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Ensures padding does not affect width */
+}
+
+.form-container input:focus,
+.form-container textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+
+
+
+.form-container button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-container button:hover {
+  background-color: #0056b3;
+}
+.large-textarea {
+  width: 100%; /* Makes the textarea fully responsive to the parent container's width */
+  height: 300px; /* Adjust the height as needed */
+  padding: 10px; /* Adds some padding inside the textarea */
+  border-radius: 4px; /* Optional: Rounds the corners */
+  border: 1px solid #ccc; /* Optional: Adds a border */
+  box-sizing: border-box; /* Ensures padding does not affect the overall dimensions */
+}

@@ -24,25 +24,23 @@
   --box-shadow-base: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* body {
-  background: var(--background-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  font-family: var(--font-family-base);
-} */
 
  .auth-choice-container {
-  background: var(--container-bg-color);
-  padding: var(--container-padding);
-  border-radius: var(--border-radius-base);
-  box-shadow: var(--box-shadow-base);
-  text-align: center;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
-  /* max-width: 400px; */
-  transition: transform 0.3s ease-in-out;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 33.33%;
+  height: 50vh;
+
+ 
+
 } 
 
 .auth-choice-container:hover {
@@ -75,6 +73,22 @@
 
 .auth-choice-container button:last-child {
   margin-bottom: 0;
+}
+
+/* LandingPage.css */
+.auth-button {
+  padding: 10px 20px; /* Adjust padding to control size */
+  font-size: 16px; /* Adjust font size */
+  background-color: #007bff; /* Background color */
+  color: white; /* Text color */
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Change cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.auth-button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
 }
 
 /* Responsive Design */

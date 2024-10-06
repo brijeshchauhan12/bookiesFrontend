@@ -11,6 +11,8 @@ import NewBookAddForm from './NewBookAddForm.js';
 import SingleBookByUserDetails from './SingleBookByUserDetails.js';
 import EmailLinkPage from './SendEmail.js';
 import BookDetail from './Model/BookDetail.js';
+import AdminPage from './AdminPage.js';
+import AllBooks from './AllBooks.js';
 
 function App() {
   const [isAuthenticated, setAuth] = useState(false);
@@ -30,6 +32,8 @@ function App() {
         <Route path="/Singlebookbyuser" element={<SingleBookByUserDetails />} />
         <Route path="/email" element={<EmailLinkPage />} />
         <Route path="/bookdetail" element={<BookDetail />} />
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/allBooks" element={<AllBooks />} />
       </Routes>
     </Router>
   );

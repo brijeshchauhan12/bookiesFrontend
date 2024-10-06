@@ -99,6 +99,9 @@ const handleBooksByIdUser = async (e, bookId) => {
             // const arr = response.data.split("*")
             const data =response.data;
             data.bookId=bookId;
+            data.owner=true;
+            data.token=token;
+            data.userid=userid;
             console.log(data.title+"data")
             navigate('/bookdetail',
               { state: data }
@@ -124,6 +127,8 @@ const handleBooksByIdUser = async (e, bookId) => {
           <h6>{email}</h6>
         </div>
         <div className="nav-buttons">
+          <button onClick={() =>  navigate('/home', { state: JSON.parse(localStorage.getItem('userToken')) })}>Home</button>
+
           <button onClick={() => navigate('/addBook',
             {
               state:
@@ -136,6 +141,7 @@ const handleBooksByIdUser = async (e, bookId) => {
             })}
           >
             Add New Book</button>
+
         </div>
 
 
@@ -156,7 +162,7 @@ const handleBooksByIdUser = async (e, bookId) => {
                   <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Language</th>
                   <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Grade</th>
                   <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Genre</th>
-                  <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Book Detail</th>
+                  <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Book Detail(Edit)</th>
                   <th style={{ border: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>List Book/Delete</th>
                 </tr>
               </thead>

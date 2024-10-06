@@ -9,6 +9,9 @@ const BookSearch = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false); // State to manage modal visibility
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [showModal, setShowModal] = useState(true);
+
+  
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -53,6 +56,7 @@ const BookSearch = (props) => {
           const data =response.data;
           data.bookId=bookId;
           console.log(data.title+"data")
+          setShowModal(false);
           navigate('/bookdetail',
             { state: data }
           )

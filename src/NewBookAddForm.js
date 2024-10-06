@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import './css/NewBookAddForm.css';
+// import  'react-datepicker/dist/date_utils';
 const NewBookAddForm = () => {
   // Step 1: Set up state
   const [title, setTitle] = useState('');
@@ -21,6 +22,7 @@ const NewBookAddForm = () => {
   const [publicationDate, setPublicationDate] = useState('');
   const [quantity, setQuantity] = useState('');
   const [price, setPrice] = useState('');
+  const [loading, setLoading] = useState(false); // New state for loading
 
   const location = useLocation();
 
@@ -40,28 +42,28 @@ const NewBookAddForm = () => {
 
   const validateForm = () => {
     const messages = {};
-    if (!formData.title) {
-      console.log(formData)
+    if (!title) {
+      // console.log(formData)
       messages.title = 'Title is required';
     }
-    if (!formData.author) {
+    if (!author) {
       messages.author = 'Author is required';
     }
     // validation for quantity, price , pages and languages
     // Validation for quantity
-    if (!formData.quantity || formData.quantity <= 0) {
+    if (!quantity || quantity <= 0) {
       messages.quantity = 'Quantity must be a positive number';
     }
     // Validation for price
-    if (!formData.price || formData.price <= 0) {
+    if (!price || price <= 0) {
       messages.price = 'Price must be a positive number';
     }
     // Validation for pages
-    if (!formData.pages || formData.pages <= 0) {
+    if (!pages || pages <= 0) {
       messages.pages = 'Pages must be a positive number';
     }
     // Validation for languages
-    if (!formData.language.trim()) {
+    if (!language.trim()) {
       messages.language = 'Languages is required';
     }
 
@@ -75,6 +77,7 @@ const NewBookAddForm = () => {
     // Here you would typically send the book data to a backend server
 
     e.preventDefault();
+    setLoading(true); // Start loading
     const messages = validateForm();
     console.log(messages);
     if (Object.keys(messages).length > 0) {
@@ -83,75 +86,77 @@ const NewBookAddForm = () => {
       return; // Prevent form submission if validation fails
     }
     try {
-        setTitle(formData.title);
-        setAuthor(formData.author);
-        setQuantity(formData.quantity);
-        setPrice(formData.price);
-        setPages(formData.pages);
-        setLanguage(formData.language);
-
-      const response = await axios.post('http://localhost:7777/api/books',
-        {
-          title,
-          author,
-          grade,
-          userid,
-          board,
-          genre,
-          country,
-          edition,
-          description,
-          isbn,
-          language,
-          year,
-          pages,
-          publisher,
-          publicationDate,
-          quantity,
-          price
-        }, // This is the request body
-        {
-          headers: {
-            'Content-Type': 'application/json', // Typically, for a JSON body, you should use 'application/json'
-            'Authorization': 'Bearer ' + token,
-          }
-        }
-      );
-      console.log(response);
-      if (response.data.id) {
-        // Navigate to login page
-        console.log("data saved successfully");
-        alert("data saved successfully");
-        navigate('/details',
-          {
-            state:
+        // setTitle(formData.title);
+        // setAuthor(formData.author);
+        // setQuantity(formData.quantity);
+        // setPrice(formData.price);
+        // setPages(formData.pages);
+        // setLanguage(formData.language);
+        // console.log(formData);
+        // setTimeout(async () => {
+         
+          const response = await axios.post('http://localhost:7777/api/books',
             {
-              token: token,
-              userid: userid,
-              fullName: fullName,
-              email: email
+              title,
+              author,
+              grade,
+              userid,
+              board,
+              genre,
+              country,
+              edition,
+              description,
+              isbn,
+              language,
+              year,
+              pages,
+              publisher,
+              publicationDate,
+              quantity,
+              price
+            }, // This is the request body
+            {
+              headers: {
+                'Content-Type': 'application/json', // Typically, for a JSON body, you should use 'application/json'
+                'Authorization': 'Bearer ' + token,
+              }
             }
+          );
+          console.log("this is the response from the backend"+response);
+
+          if (response.data.id) {
+            // Navigate to login page
+            console.log("data saved successfully");
+            alert("data saved successfully");
+            navigate('/details',
+              {
+                state:
+                {
+                  token: token,
+                  userid: userid,
+                  fullName: fullName,
+                  email: email
+                }
+              }
+            );
+          } else {
+            console.log('adding book failed');
           }
-        );
-      } else {
-        console.log('Signup failed');
-      }
+        
+        // }, 3000); // Delay in milliseconds
+
     } catch (error) {
-      console.error('Error signing up', error);
+      console.log('Error adding book', error.response.status);
+      console.error("Error saving data:", error.response ? error.response.data : error.message);
+      alert("Failed to save data: " + (error.response.status===409 ? "Book with the same title already exists" : error.message));
 
     }
     setValidationMessages({});
+    setTimeout(() => setLoading(false), 3000); // Stop loading after 500ms
    
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    console.log(name, value);
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
+
 
   // Step 2: Form structure
   return (
@@ -163,9 +168,9 @@ const NewBookAddForm = () => {
         <input
           type="text"
           name="title"
-          value={formData.title}
+          value={title}
           placeholder='* Book Title'
-          onChange={handleChange}
+          onChange={(e) => setTitle(e.target.value)}
         
         />
         {validationMessages.title && <p>{validationMessages.title}</p>}
@@ -177,9 +182,9 @@ const NewBookAddForm = () => {
           name="author"
           placeholder='* Author Name'
           
-          value={formData.author}
+          value={author}
           
-          onChange={handleChange}
+          onChange={(e) => setAuthor(e.target.value)}
         />
           {validationMessages.author && <p>{validationMessages.author}</p>}
       </div>
@@ -238,8 +243,8 @@ const NewBookAddForm = () => {
           name="language"
           placeholder='* Book language'
           className="form-control"
-          value={formData.language}
-          onChange={handleChange}
+          value={language}
+          onChange={(e) => setLanguage(e.target.value)}
         />
         {validationMessages.language && <p>{validationMessages.language}</p>}
       </div>
@@ -255,8 +260,8 @@ const NewBookAddForm = () => {
           name="pages"
           className="form-control"
           placeholder='* Number of pages in the book'
-          value={formData.pages}
-          onChange={handleChange}
+          value={pages}
+          onChange={(e) => setPages(e.target.value)}
         />
         {validationMessages.pages && <p>{validationMessages.pages}</p>}
       </div>
@@ -277,8 +282,8 @@ const NewBookAddForm = () => {
           name="quantity"
           placeholder='* Number of books available in stock'
           className="form-control"
-          value={formData.quantity}
-          onChange={handleChange}
+          value={quantity}
+          onChange={(e) => setQuantity(e.target.value)}
         />
         {validationMessages.quantity && <p>{validationMessages.quantity}</p>}
       </div>
@@ -290,14 +295,14 @@ const NewBookAddForm = () => {
           name="price"
           className="form-control"
           placeholder='* Price of the book in INR'
-          value={formData.price}
-          onChange={handleChange}
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
         />
         {validationMessages.price && <p>{validationMessages.price}</p>}
       </div>
 
-
-      <button type="submit">Add Book</button>
+     {loading ? <button>Adding book...</button> : <button type="submit">Add Book</button>}
+     
     </form>
 
   );
